@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      第一篇博客
+title:      CentOS install ORACLE (the most detailed in history!!!!!!!!!!!!!!! There is no one!!!)
 subtitle:   没有
 date:       2021-07-28
 author:     熊金
