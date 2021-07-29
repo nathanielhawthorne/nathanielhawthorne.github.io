@@ -21,6 +21,11 @@ tags:
 
 
 
+
+
+
+
+
 # Synology NAS detailed tutorial (the most detailed, no one!!!)
 
 **Tools and software needed for this tutorial
