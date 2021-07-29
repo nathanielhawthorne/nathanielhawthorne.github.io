@@ -93,11 +93,11 @@ layout: default
                 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
                 <script type="text/javascript">
                     var gitalk = new Gitalk({
-                    clientID: 'xx',
-                    clientSecret: 'xx',
-                    repo: 'nathanielhawthorne.github.io',
-                    owner: 'nathanielhawthorne',
-                    admin: ['nathanielhawthorne'],
+                    clientID: '{{site.gitalk.clientID}}',
+                    clientSecret: '{{site.gitalk.clientSecret}}',
+                    repo: '{{site.gitalk.repo}}',
+                    owner: '{{site.gitalk.owner}}',
+                    admin: ['{{site.gitalk.admin}}'],
                     distractionFreeMode: {{site.gitalk.distractionFreeMode}},
                     id: md5(location.pathname),
                     });
