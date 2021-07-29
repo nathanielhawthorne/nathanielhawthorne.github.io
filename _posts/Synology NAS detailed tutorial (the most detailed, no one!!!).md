@@ -2,7 +2,7 @@
 layout:     post
 title:      Synology NAS detailed tutorial (the most detailed, no one!!!)
 subtitle:   
-date:       2021-07-28
+date:       2021-07-29
 author:     熊金
 header-img: img/post-bg-swift2.jpg
 catalog: true
