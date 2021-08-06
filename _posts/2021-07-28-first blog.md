@@ -456,3 +456,170 @@ Run the following command as root user
 vim /etc/oratab
 Replace N to Y at the end of the line:
 ORADB11G:/u01/app/oracle/product/11.2.0/dbhome_1:Y
+3.26 useful command
+Before setting up Oracle to start automatically, you should understand how to manually start Oracle components. This will also help the diagnosis. Run these commands as the oracle user.
+Run the database:
+dbstart $ORACLE_HOME
+/etc/init.d/oracle start
+
+Stop the database:
+dbshut $ORACLE_HOME
+Start the Database Control Enterprise Manager, which provides a Web interface for database control:
+emctl start dbconsole
+Stop Database Control Manager:
+emctl stop dbconsole
+Check the status of Database Control Manager:
+emctl status dbconsole
+Start listening:
+lsnrctl start
+Stop monitoring:
+lsnrctl stop
+Check the monitoring status:
+$ORACLE_HOME/bin/lsnrctl status
+Start the database configuration assistant (in the GUI shell, not in the SSH console):
+dbca
+You can configure Oracle monitoring by editing the file:
+vim $ORACLE_HOME/network/admin/listener.ora
+Connect to the database at the console:
+sqlplus / as sysdba;
+3.27 Create Oracle startup script in centos
+Let's discuss how to set up Oracle to start automatically when centos starts. After editing /etc/oratab, you should create a startup script in the /etc/init.d/ directory.
+Create a new Oracle startup script file in centos (run the command as root):
+vim /etc/init.d/oracle
+Add the following content to the file
+```java
+#!/bin/bash
+
+#
+
+# Run-level Startup script for the Oracle Instance and Listener
+
+#
+
+### BEGIN INIT INFO
+
+# Provides:          Oracle
+
+# Required-Start:    $remote_fs $syslog
+
+# Required-Stop:     $remote_fs $syslog
+
+# Default-Start:     2 3 4 5
+
+# Default-Stop:      0 1 6
+
+# Short-Description: Startup/Shutdown Oracle listener and instance
+
+### END INIT INFO
+
+#ORACLE_UNQNAME="ORADB11G"
+
+#export $ORACLE_UNQNAME
+
+echo "ORACLE_UNQNAME is $ORACLE_UNQNAME"
+
+ORACLE_HOME="/u01/app/oracle/product/11.2.0/dbhome_1"
+
+ORACLE_OWNR="oracle"
+
+# if the executables do not exist -- display error
+
+if [ ! -f $ORACLE_HOME/bin/dbstart -o ! -d $ORACLE_HOME ]
+
+then
+
+echo "Oracle startup: cannot start"
+
+exit 1
+
+fi
+
+# depending on parameter -- startup, shutdown, restart
+
+# of the instance and listener or usage display
+
+case "$1" in
+
+start)
+
+# Oracle listener and instance startup
+
+echo -n "Starting Oracle: "
+
+echo "dbstart"
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORACLE_HOME/bin/dbstart $ORACLE_HOME"
+
+echo "lsnrctl start"
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORACLE_HOME/bin/lsnrctl start"
+
+#Optional : for Enterprise Manager software only
+
+echo "emctl start dbconsole"
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORACLE_HOME/bin/emctl start dbconsole"
+
+touch /var/lock/oracle
+
+echo "OK - a script has been executed"
+
+;;
+
+stop)
+
+# Oracle listener and instance shutdown
+
+echo -n "Shutdown Oracle: "
+
+#Optional : for Enterprise Manager software only
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORAClE_HOME/bin/emctl stop dbconsole"
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORACLE_HOME/bin/lsnrctl stop"
+
+source "/home/oracle/.bashrc" && su $ORACLE_OWNR -c "$ORACLE_HOME/bin/dbshut $ORACLE_HOME"
+
+rm -f /var/lock/oracle
+
+echo "OK - a script has been executed"
+
+;;
+
+reload|restart)
+
+$0 stop
+
+$0 start
+
+;;
+
+*)
+
+echo "Usage: $0 start|stop|restart|reload"
+
+exit 1
+
+esac
+
+exit 0
+
+```
+3.28 Set the correct permissions:
+chown oracle:oinstall /etc/init.d/oracle
+
+chmod 0775 /etc/init.d/oracle
+Start this script immediately after the operating system starts (can be used for the default run level):
+update-rc.d oracle defaults
+If necessary, you can edit the startup priority.
+Run the script to stop Oracle (you can run this script as root):
+/etc/init.d/oracle stop
+If you want to start Oracle, use the following command to run this script:
+/etc/init.d/oracle start
+![20210716233337299](https://user-images.githubusercontent.com/87814661/128490588-09be3e50-ac53-4262-a514-5fb181400ea1.png)
+Note: Pay attention to the following lines and similar lines in the Oracle startup script:
+source "/home/oracle/.bashrc" && su ORACLEOWNR − c "ORACLE_OWNR -c" ORACLEO​WNR−c"ORACLE_HOME/bin/dbstart ORACLEHOME "First, we set up the shell to read the .bashrc system configuration stored in the oracle user The settings in the file include the variables required for the normal operation of the Oracle component, such as ORACLEHOSTNAME, ORACLEBASE, PATH, etc. After applying the b a s h setting of the o r a c l e user to the current sh e l l session, execute the next command to start the O r a c l e database. What is the difference between s u − and s u? user 1 @ hostname: ORACLE_HOME" First, we set up the shell to read the settings stored in the oracle user's .bashrc system configuration file, including the variables required for the normal operation of the Oracle components, such as ORACLE_HOSTNAME, ORACLE_BASE, PATH, etc. Change the oracle user After the bash setting is applied to the current shell session, execute the next command to start the Oracle database. What is the difference between su-and su? user1@hostname:~ ORACLEH​OME" First, we set up the shell to read the data stored in the oracle user The settings in the .bashrc system configuration file include variables required for the normal operation of Oracle components, such as ORACLEH​OSTNAME, ORACLEB​ASE, PATH, etc. After applying the oracle user's bash settings to the current shell session, execute the next command to start the Oracle database. What is the difference between su− and su? user1@hostname: su-username2 – This command runs a command-line shell session as the selected user (username2) and uses the settings of the selected user (username2), just like you log in as username2 when you directly create a new shell session (Start from scratch). The environment variable of username2 is used in this shell session.
+user1@hostname:~$ su username2-This command runs the command line shell as the selected user (username2). The settings of the current user (user1) and the environment variables of user1 are inherited by username2 in this shell session.
+su -c (–command) means that the specified command must be run as the selected user.
+NAKIVO backup and copy data protection
+NAKIVO Backup & Replication provides high-end data protection for small and medium enterprises and enterprises through a variety of backup, replication and recovery functions, including VMware backup, Hyper-V backup, Office 365 backup, etc.
