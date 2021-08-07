@@ -45,11 +45,11 @@ Camera power supply mode
 Ap screw
 
 ### 3.5 attention 
-3.5.1 Communicate clearly with the customer on the spot and confirm the problem and idea
-3.5.2 The number of devices and connections must be clear and reflected in the topology diagram
-3.5.3 The power supply method of the camera should be clearly explained to the person who put the line in advance
-3.5.4 Complete the work order and the equipment receipt must be brought with you
-3.5.5 Is there a ladder on site
++ Communicate clearly with the customer on the spot and confirm the problem and idea
++ The number of devices and connections must be clear and reflected in the topology diagram
++ The power supply method of the camera should be clearly explained to the person who put the line in advance
++ Complete the work order and the equipment receipt must be brought with you
++ Is there a ladder on site
 
 ## 4. Solutions, quotations
 
