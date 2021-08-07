@@ -23,9 +23,11 @@ tags:
 ### 3.2. Record the site environment
 
 ### 3.3. Confirm certain issues with the customer
+
 ### 3.4. Confirmation form
+
 enquipment name|mount|Network segment/ip (dynamic/static)|Number of ports/number of downstream devices|Uplink device/port|Whether poe|100M/Gigabit|model
-|---|:--:|---|---|---|---|---|---|
+---|:--:|---|---|---|---|---|---|
 router
 switch
 AP
@@ -35,7 +37,7 @@ monitor
 printer
 
 Site environment|describe
-|---|---|
+---|---|
 User's current bandwidth
 Ceiling type, whether there is an access opening, and the location of the access opening
 Ap fixed method, wiring method, with or without pipeline
