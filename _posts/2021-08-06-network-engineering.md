@@ -34,7 +34,7 @@ wireless pc
 monitor
 printer
 
-Site environment|
+Site environment|describe
 ---|---|
 User's current bandwidth
 Ceiling type, whether there is an access opening, and the location of the access opening
