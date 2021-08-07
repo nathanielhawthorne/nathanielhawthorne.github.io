@@ -26,7 +26,8 @@ tags:
 ### 3.4. Confirmation form
 enquipment name|mount 
 ---|:--:|
-router|switch
+router
+switch
 
 ## 4. Solutions, quotations
 
