@@ -23,6 +23,10 @@ tags:
 ### 3.2. Record the site environment
 
 ### 3.3. Confirm certain issues with the customer
+### 3.4. Confirmation form
+enquipment name|mount 
+---|:--:|
+router|switch
 
 ## 4. Solutions, quotations
 
