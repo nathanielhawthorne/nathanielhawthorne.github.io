@@ -28,13 +28,13 @@ tags:
 
 enquipment name|mount|Network segment/ip (dynamic/static)|Number of ports/number of downstream devices|Uplink device/port|Whether poe|100M/Gigabit|model
 ----------------------------------------|-----------------------------|---|-------------------------|-----------------------|-------------------------|---------|--------------|
-|router||||||||
-|switch||||||||
-|AP|||||||||
-|wire pc|||||||||
-|wireless pc|||||||||
-|monitor|||||||||
-|printer|||||||||
+router||||||||
+switch||||||||
+AP|||||||||
+wire pc|||||||||
+wireless pc|||||||||
+monitor|||||||||
+printer|||||||||
 
 Site environment|describe
 --------------|--------------------|
