@@ -37,14 +37,14 @@ enquipment name|mount|Network segment/ip (dynamic/static)|Number of ports/number
 |printer|||||||||
 
 Site environment|describe
----|---|
-User's current bandwidth
-Ceiling type, whether there is an access opening, and the location of the access opening
-Ap fixed method, wiring method, with or without pipeline
-Device login information
-Customer wall type
-Camera power supply mode
-Ap screw
+--------------|--------------------|
+User's current bandwidth|                                                                                |
+Ceiling type, whether there is an access opening, and the location of the access opening|                 |
+Ap fixed method, wiring method, with or without pipeline|                                               |
+Device login information|           |
+Customer wall type|   |
+Camera power supply mode| |
+Ap screw||
 
 ### 3.5 attention 
 + Communicate clearly with the customer on the spot and confirm the problem and idea
