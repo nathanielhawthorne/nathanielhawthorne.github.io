@@ -12,7 +12,7 @@ github_repo: "https://github.com/nathanielhawthorne/nathanielhawthorne.github.io
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "钱，永远的神！"
-sidebar-avatar: /img/avatar_binggan.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/post-bg-jesus.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
